@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -15,6 +15,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '17'
+          distribution: 'adopt' # Or 'oracle', 'liberica', etc.
       - name: Build with Maven
         run: mvn clean package
       - name: Run end-to-end tests
