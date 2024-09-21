@@ -1,0 +1,1 @@
+# Testes automatizados da página Swag Labs utilizando Selenium Webdriver + Java + JUnit
