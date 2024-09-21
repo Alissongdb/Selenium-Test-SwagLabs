@@ -2,11 +2,9 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
-  schedule:
-    - cron: '0 0 * * 1' # Executa às 00:00 de segunda-feira
+    branches: [ master ]
 
 jobs:
   build:
@@ -20,4 +18,4 @@ jobs:
       - name: Build with Maven
         run: mvn clean package
       - name: Run end-to-end tests
-        run: mvn test -Dtest=*IT
+        run: mvn test
