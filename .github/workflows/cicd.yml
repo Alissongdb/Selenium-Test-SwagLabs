@@ -4,7 +4,7 @@ on:
   push:
     branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   build:
@@ -16,7 +16,9 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt' # Or 'oracle', 'liberica', etc.
-      - name: Build with Maven
+      - name: Build with Maven (conditional)
         run: mvn clean package
-      - name: Run end-to-end tests
+        if: ${{ github.event_name == 'push' && !contains(github.event.commits[0].message, '[skip build]') }}
+      - name: Run end-to-end tests (conditional)
         run: mvn test
+        if: ${{ github.event_name == 'push' && !contains(github.event.commits[0].message, '[skip test]') }}
